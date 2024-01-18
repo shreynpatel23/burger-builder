@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="javascript/jquery-3.7.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Genius Website</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- header section  -->
+    <header class="header">
+        <img src="images/logo.svg" alt="logo" class="logo">
+    </header>
+    <!-- playground section  -->
+    <div class="playground">
+        <div id="checkout_modal" style="display: none;">
+            <div class="checkout_modal" id="checkout_modal">
+                <div class="checkout_modal_card" id="checkout_modal_card">
+                    <div class="cross_icon" id="cross_icon">
+                        &#10005;
+                    </div>
+                    <h3 class="modal_header">Total Payment</h3>
+                    <div class="pricing_group">
+                        <p class="pricing_label">Subtotal</p>
+                        <p class="pricing_value" id="pricing_value"></p>
+                    </div>
+                    <div class="pricing_group">
+                        <p class="pricing_label">HST</p>
+                        <p class="pricing_value" id="hst"></p>
+                    </div>
+                    <hr />
+                    <div class="pricing_group">
+                        <p class="pricing_label">Total</p>
+                        <p class="pricing_value" id="total"></p>
+                    </div>
+                    <hr />
+                    <div class="pricing_action">
+                        <button class="action_button" id="place_order">
+                            Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="burger_handler">
+            <h1 class="heading_1">👋🏻 Welcome to Burger Genius</h1>
+            <p class="helper_text">Crafting your ideal burger is our goal. Start by choosing the type of bread and handpicking the ingredients, to determine the total cost simply click on the Checkout button.</p>
+            <!-- choose bread  -->
+            <div class="section_label">Bread</div>
+            <div class="card_wrapper">
+                <div class="card" tabindex="0" role="button" id="add_wheat_bread">
+                    <div class="card_icon">
+                        <img src="images/wheat_bread.svg" alt="wheat bread icon for card" class="img_responsive">
+                    </div>
+                    <div class="card_text_container">
+                        <p class="card_title">Wheat Bread</p>
+                        <p class="card_description">Soft, wholesome, freshly baked, nutty, whole-grain, hearty,
+                            nutritious, golden-brown, versatile, comforting.</p>
+                        <p class="card_price">$ 2.00</p>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" role="button" id="add_multigrain_bread">
+                    <div class="card_icon">
+                        <img src="images/multigrain_bread.svg" alt="multigrain bread icon for card"
+                            class="img_responsive">
+                    </div>
+                    <div class="card_text_container">
+                        <p class="card_title">Multigrain Bread</p>
+                        <p class="card_description">
+                            Nutty, wholesome, textured, fiber-rich, hearty, nourishing, seedy, whole-grain, robust,
+                            multilayered.</p>
+                        <p class="card_price">$ 3.00</p>
+                    </div>
+                </div>
+            </div>
+            <div id="toggle_patty_view" style="display: none;">
+                <h3 class="heading_2">Choose Ingredient</h3>
+                <!-- helper text  -->
+                <p class="helper_text">You can add multiple patty, vegetables, and select your dressings</p>
+                <!-- choose patty  -->
+                <div class="section_label">Patty</div>
+                <div class="card_wrapper">
+                    <div class="card">
+                        <div class="card_icon">
+                            <img src="images/beef_patty_card.svg" alt="beef patty icon for card" class="img_responsive">
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Beef Patty</p>
+                            <p class="card_description">Juicy, savory, grilled, seasoned, succulent, hearty, flavorful,
+                                char-grilled, classic, indulgent.</p>
+                            <p class="card_price">$ 7.00</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_beef_patty">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="beef_quantity"></p>
+                                <button class="increment" id="add_beef_patty">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_icon">
+                            <img src="images/veggie_pattie_card.svg" alt="Veggie Patty icon for card"
+                                class="img_responsive">
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Veggie Patty</p>
+                            <p class="card_description">
+                                Wholesome, plant-based, grilled, flavorful, nutritious, veggie-packed, satisfying,
+                                seasoned,
+                                sustainable, delicious.</p>
+                            <p class="card_price">$ 5.00</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_veggie_patty">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="veggie_quantity"></p>
+                                <button class="increment" id="add_veggie_patty">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_icon">
+                            <img src="images/chicken_patty_card.svg" alt="Chicken Patty icon for card"
+                                class="img_responsive">
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Chicken Patty</p>
+                            <p class="card_description">Tender, seasoned, grilled, savory, zesty, succulent, juicy,
+                                flavorful, char-grilled, delectable.</p>
+                            <p class="card_price">$ 6.00</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_chicken_patty">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="chicken_quantity"></p>
+                                <button class="increment" id="add_chicken_patty">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- choose vegetables  -->
+                <div class="section_label">Vegetables</div>
+                <div class="card_wrapper">
+                    <div class="card">
+                        <div class="card_icon">
+                            <img src="images/vegetables_card.svg" alt="vegetables icon for card" class="img_responsive">
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Vegetables</p>
+                            <p class="card_description">Includes Latices, Cucumber, Tomatoes, Onions, and Bell Pepers
+                            </p>
+                            <p class="card_price">$ 3.00</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_vegetables">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="vegetables_quantity"></p>
+                                <button class="increment" id="add_vegetables">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- choose dressings  -->
+                <div class="section_label">Dressing</div>
+                <div class="card_wrapper">
+                    <div class="card">
+                        <div class="card_icon">
+                            <div class="dressing_icon" style="background-color: #FFE471;"></div>
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Liquid Cheese</p>
+                            <p class="card_price">$ 1.99</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_liquid_cheese_dressing">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="liquid_cheese_quantity"></p>
+                                <button class="increment" id="add_liquid_cheese_dressing">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_icon">
+                            <div class="dressing_icon" style="background-color: #FFB571;"></div>
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Cheddar</p>
+                            <p class="card_price">$ 2.99</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_cheddar_cheese_dressing">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="cheddar_cheese_quantity"></p>
+                                <button class="increment" id="add_cheddar_cheese_dressing">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card_icon">
+                            <div class="dressing_icon" style="background-color: #FFF5E0;"></div>
+                        </div>
+                        <div class="card_text_container">
+                            <p class="card_title">Mozzarella</p>
+                            <p class="card_price">$ 2.99</p>
+                            <div class="quantity_button" id="quantity_button">
+                                <button class="decrement" id="remove_mozzarella_cheese_dressing">
+                                    <img src="images/remove.svg" alt="decrement quantity">
+                                </button>
+                                <p class="quantity" id="mozzarella_cheese_quantity"></p>
+                                <button class="increment" id="add_mozzarella_cheese_dressing">
+                                    <img src="images/add.svg" alt="increment quantity">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="burger_display">
+            <div class="display_header">
+                <h2 class="heading_3">Your Burger</h2>
+            </div>
+            <div class="display_body" id="burger_render">
+                <img id="top_bread">
+                <div id="burger_wrapper" class="burger_wrapper"></div>
+                <img id="bottom_bread">
+            </div>
+            <div class="display_body" id="empty_state">
+                <p class="empty_state_text">Select the type of bread to begin with!</p>
+            </div>
+            <div class="display_footer">
+                <div class="text_wrapper">
+                    <p class="label">Your total burger cost is</p>
+                    <p class="value" id="totalBurgerCost"></p>
+                </div>
+                <div class="action_wrapper">
+                    <button class="clear_form" id="clear_form">
+                        Clear
+                    </button>
+                    <button class="action_button" id="checkout_form">
+                        Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="javascript/index.js"></script>
+</body>
+
+</html>
